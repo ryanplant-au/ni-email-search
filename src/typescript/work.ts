@@ -3,7 +3,7 @@
 
 import {parse, download} from './csv';
 import {getSessionKey} from './ni_email_search';
-import {User} from './user';
+import {User} from './User';
 
 $(document).ready(function () {
     let sessionKey: string;
