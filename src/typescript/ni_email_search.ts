@@ -1,5 +1,5 @@
 export const getSessionKey = (login: string, password: string): string => {
-    console.log("Fired getSessionKey with login " + login + "and passsword " + password);
+    console.log("Fired getSessionKey with login " + login + " and password " + password);
     let sessionKey: string;
     $.ajax('http://forums.ni.com/restapi/vc/authentication/sessions/login', {
         dataType: 'jsonp',
@@ -11,8 +11,8 @@ export const getSessionKey = (login: string, password: string): string => {
         success: (data, textStatus, jqXHR) => {
             if (data.response.status === 'success') {
                 console.log("AJAX call success");
-                console.log("Got session key " + sessionKey);
                 sessionKey = data.response.value.$;
+                console.log("Got session key " + sessionKey);
                 $('#auth_button').css('background-color', '#00e673');
             } else {
                 console.log("AJAX call resolved but auth failed");
