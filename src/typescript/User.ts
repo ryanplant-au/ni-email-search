@@ -81,7 +81,6 @@ export class User {
                 data: {
                     'restapi.response_format': 'json',
                 },
-                async: false,
                 success: (data: UserResponse, textStatus, jqXHR) => {
                     if (data.response.status === 'success') {
                         this.username = data.response.user.login.$;
