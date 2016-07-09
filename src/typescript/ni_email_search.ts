@@ -92,12 +92,10 @@ export const fetchUserdata = (email: string, sessionKey: string, listToAddTo: st
     let id: string;
 
     if (localStorage.getItem(email) !== null) {
-        console.log('localStorage.getitem(email) is not null, i nfirst branch');
         [username, id] = localStorage.getItem(email).split(',');
         appendRow(userRow(email, username, id));
         listToAddTo.push([email, username, id]);
     } else {
-        console.log('localStorage.getitem(email) is null, in 2nd branch');
         $.ajax('http://forums.ni.com/restapi/vc/users/email/' + email, {
             dataType: 'jsonp',
             data: {
@@ -105,7 +103,6 @@ export const fetchUserdata = (email: string, sessionKey: string, listToAddTo: st
                 'restapi.session_key': sessionKey
             },
             success: (data: UserResponse, textStatus, jqXHR) => {
-                console.log('ajax call success');
                 if (data.response.status === 'success') {
                     username = data.response.user.login.$;
                     id = data.response.user.id.$.toString();
