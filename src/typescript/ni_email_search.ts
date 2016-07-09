@@ -84,41 +84,41 @@ interface UserResponse {
     }
 }
 
-// Gets passed the result of an AJAX call and decides what to do with it.
-// Appends either the row of details, or EMAIL/---------/--------, depending
-// on whether the call found a user. Also adds a user to the list it's passed.
-const processCallRequest = (data: UserResponse, email: string, listToAddTo: string[][]): void => {
-    if (data.response.status === 'success') {
-        let row = userRow(
-            data.response.user.email.$,
-            data.response.user.login.$,
-            data.response.user.id.$.toString());
-        appendRow(row);
-        listToAddTo.push([
-            data.response.user.email.$,
-            data.response.user.login.$,
-            data.response.user.id.$.toString()
-        ]);
-    } else {
-        appendRow(userRow(email, '----------', '----------'));
-        listToAddTo.push([
-            email,
-            '----------',
-            '----------'
-        ]);
-    }
-};
-
-// Fetches a User object through an async JSONP call, and passes it to processCallRequest
+// Checks localStorage to see if we have a user's data.
+// If we do, we return it. If we don't, we fetch it from the API.
+// We use localStorage with emails as keys and "username,ID" as values.
 export const fetchUserdata = (email: string, sessionKey: string, listToAddTo: string[][]): void => {
-    $.ajax('http://forums.ni.com/restapi/vc/users/email/' + email, {
-        dataType: 'jsonp',
-        data: {
-            'restapi.response_format': 'json',
-            'restapi.session_key': sessionKey
-        },
-        success: (data, textStatus, jqXHR) => processCallRequest(data, email, listToAddTo)
-    });
+    let username: string;
+    let id: string;
+
+    if (localStorage.getItem(email) !== null) {
+        console.log('localStorage.getitem(email) is not null, i nfirst branch');
+        [username, id] = localStorage.getItem(email).split(',');
+        appendRow(userRow(email, username, id));
+        listToAddTo.push([email, username, id]);
+    } else {
+        console.log('localStorage.getitem(email) is null, in 2nd branch');
+        $.ajax('http://forums.ni.com/restapi/vc/users/email/' + email, {
+            dataType: 'jsonp',
+            data: {
+                'restapi.response_format': 'json',
+                'restapi.session_key': sessionKey
+            },
+            success: (data: UserResponse, textStatus, jqXHR) => {
+                console.log('ajax call success');
+                if (data.response.status === 'success') {
+                    username = data.response.user.login.$;
+                    id = data.response.user.id.$.toString();
+                } else {
+                    username = '----------';
+                    id = '----------';
+                }
+                appendRow(userRow(email, username, id));
+                listToAddTo.push([email, username, id]);
+                localStorage.setItem(email, username + ',' + id);
+            }
+        });
+    }
 };
 
 export const getSessionKey = (login: string, password: string): string => {
