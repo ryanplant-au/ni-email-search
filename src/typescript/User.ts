@@ -105,7 +105,6 @@ export class User {
                     'restapi.response_format': 'json',
                     'restapi.session_key': this.sessionKey
                 },
-                async: false,
                 success: (data: UserResponse, textStatus, jqXHR) => {
                     if (data.response.status === 'success') {
                         this.username = data.response.user.login.$;
