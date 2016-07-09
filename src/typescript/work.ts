@@ -16,6 +16,7 @@ $(document).ready(function () {
                                                                   .value
                                                                   .split(',');
         for (let email of emailsToSearch) {
+            console.log("Initialising User object with sessionKey " + sessionKey);
             let current = new User(email, sessionKey);
             current.fetch().then(() => {
                 userList.push(current.listRepresentation());
@@ -27,7 +28,10 @@ $(document).ready(function () {
     $("#auth_button").on('click', () => {
         let username = (<HTMLInputElement>document.getElementById('login')).value;
         let password = (<HTMLInputElement>document.getElementById('password')).value;
-        sessionKey = getSessionKey(username, password);
+        getSessionKey(username, password).then(result => {
+            sessionKey = result;
+            console.log("Setting sessionKey to " + sessionKey);
+        });
     });
 
     $("#download_button").on('click', () => {
