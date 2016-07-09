@@ -1,7 +1,9 @@
 ///<reference path="../../typings/jquery/jquery.d.ts"/>
+///<reference path="../../typings/globals/es6-shim/index.d.ts"/>
 
 import {parse, download} from './csv';
-import {fetchUserdata, getSessionKey} from './ni_email_search';
+import {getSessionKey} from './ni_email_search';
+import {User} from './user';
 
 $(document).ready(function () {
     let sessionKey: string;
@@ -12,7 +14,11 @@ $(document).ready(function () {
                                                                   .value
                                                                   .split(',');
         for (let email of emailsToSearch) {
-            fetchUserdata(email, sessionKey, userList);
+            let current = new User(email, sessionKey);
+            current.fetch().then(() => {
+                userList.push(current.listRepresentation());
+                current.appendToTable();
+            });
         }
     });
 
