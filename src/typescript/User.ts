@@ -107,6 +107,7 @@ export class User {
                 },
                 success: (data: UserResponse, textStatus, jqXHR) => {
                     if (data.response.status === 'success') {
+                        console.log("Fetched remote with sessionKey " + this.sessionKey);
                         this.username = data.response.user.login.$;
                         this.id = data.response.user.id.$.toString();
                     } else {
