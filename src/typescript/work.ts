@@ -11,12 +11,10 @@ $(document).ready(function () {
     let userList: string[][] = [];
 
     $('#search_button').on('click', () => {
-        console.log('Search event fired');
         let emailsToSearch: string[] = (<HTMLInputElement>document.getElementById('emailSearchList'))
                                                                   .value
                                                                   .split(',');
         for (let email of emailsToSearch) {
-            console.log("Initialising User object with sessionKey " + sessionKey);
             let current = new User(email, sessionKey);
             current.fetch().then(() => {
                 userList.push(current.listRepresentation());
@@ -30,7 +28,6 @@ $(document).ready(function () {
         let password = (<HTMLInputElement>document.getElementById('password')).value;
         getSessionKey(username, password).then(result => {
             sessionKey = result;
-            console.log("Setting sessionKey to " + sessionKey);
         });
     });
 
