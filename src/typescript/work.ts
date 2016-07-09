@@ -11,6 +11,7 @@ $(document).ready(function () {
     let userList: string[][] = [];
 
     $('#search_button').on('click', () => {
+        console.log('Search event fired');
         let emailsToSearch: string[] = (<HTMLInputElement>document.getElementById('emailSearchList'))
                                                                   .value
                                                                   .split(',');
