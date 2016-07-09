@@ -6,26 +6,28 @@ head
 body
     .container
         .row
-            .col.l4
-                input#login(type='text', placeholder='Login')
-            .col.l4
-                input#password(type='password', placeholder='Password')
-            .col.l4
-                a.btn.waves-effect.waves-light#auth_button Authenticate
-        .row
-            textarea.materialize-textarea#emailSearchList(placeholder='Paste a comma-separated list of email addresses here')
-        .row
-            .col.l6
-                a.btn.waves-effect.waves-light#search_button Search
-            .col.l6
-                a.btn.waves-effect.waves-light#download_button Download CSV File
-        .row
-            table
-                thead
-                    tr
-                        td Email
-                        td Login
-                        td ID
-                tbody#target
+            .col.l8.offset-l2
+                .row
+                    .col.l4
+                        input#login(type='text', placeholder='Login')
+                    .col.l4
+                        input#password(type='password', placeholder='Password')
+                    .col.l4
+                        a.btn.waves-effect.waves-light#auth_button Authenticate
+                .row
+                    textarea.materialize-textarea#emailSearchList(placeholder='Paste a comma-separated list of email addresses here')
+                .row
+                    .col.l6
+                        a.btn.waves-effect.waves-light#search_button Search
+                    .col.l6
+                        a.btn.waves-effect.waves-light#download_button Download CSV File
+                .row
+                    table
+                        thead
+                            tr
+                                td Email
+                                td Login
+                                td ID
+                        tbody#target
     script(src='https://code.jquery.com/jquery-3.0.0.min.js')
     script(src='work.js')
