@@ -6,7 +6,6 @@ import {getSessionKey} from './ni_email_search';
 import {User} from './User';
 
 $(document).ready(function () {
-    localStorage.clear();
     let sessionKey: string;
     let userList: string[][] = [];
 
