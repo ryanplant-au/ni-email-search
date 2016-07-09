@@ -134,7 +134,6 @@ export class User {
 
     appendToTable() {
         document.getElementById('target').appendChild(this.htmlRow());
-        console.log('appended');
     }
 
     listRepresentation() {
