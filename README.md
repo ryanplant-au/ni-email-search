@@ -16,6 +16,7 @@ Clone the repository, and run `npm install` then `gulp` from its root. Access th
 A more likely issue is that you make an unauthenticated query and get back hidden profiles, making their information show up as hidden even on future authenticated queries. In this eventuality, clear your local storage.  
 
 ## Changelog
+- **1.1.2**: Bundles jQuery, rather than relying on a CDN.
 - **1.1.1**: Fixes off-by-one error in the statistics report. The number of emails is now the number of rows in the table, not the number of comma-separated values in the search field.
 - **1.1.0**: Adds a button to clear local results cache.
 - **1.0.0**: Initial release.

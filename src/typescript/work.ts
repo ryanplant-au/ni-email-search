@@ -5,6 +5,8 @@
 import {parse, download} from './csv';
 import {getSessionKey} from './auth';
 import {User} from './User';
+import * as $ from 'jquery';
+window['$'] = $;
 
 $(document).ready(function () {
     let sessionKey: string;
