@@ -43,12 +43,8 @@ $(document).ready(function () {
     });
 
     $("#stats_button").on('click', () => {
-        let numberOfEmails: number = (<HTMLInputElement>document.getElementById('emailSearchList'))
-                                                                .value
-                                                                .split(',')
-                                                                .length;
         Materialize.toast(
-            numberOfEmails + ' emails. ' + numberOfSuccesses + ' successes, ' + numberOfFailures + ' failures.',
+            userList.length + ' emails. ' + numberOfSuccesses + ' successes, ' + numberOfFailures + ' failures.',
             10000);
     });
 
