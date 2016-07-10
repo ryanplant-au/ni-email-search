@@ -16,4 +16,5 @@ Clone the repository, and run `npm install` then `gulp` from its root. Access th
 A more likely issue is that you make an unauthenticated query and get back hidden profiles, making their information show up as hidden even on future authenticated queries. In this eventuality, clear your local storage.  
 
 ## Changelog
+- **1.1.0**: Adds a button to clear local results cache.
 - **1.0.0**: Initial release.

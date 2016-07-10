@@ -51,4 +51,9 @@ $(document).ready(function () {
             numberOfEmails + ' emails. ' + numberOfSuccesses + ' successes, ' + numberOfFailures + ' failures.',
             10000);
     });
+
+    $("#clear_button").on('click', () => {
+        localStorage.clear();
+        Materialize.toast('Local cache cleared', 3500);
+    });
 });
