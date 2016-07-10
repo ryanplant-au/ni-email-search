@@ -3,7 +3,7 @@
 ///<reference path="../../typings/globals/materialize-css/index.d.ts"/>
 
 import {parse, download} from './csv';
-import {getSessionKey} from './ni_email_search';
+import {getSessionKey} from './auth';
 import {User} from './User';
 
 $(document).ready(function () {
