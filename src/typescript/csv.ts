@@ -1,7 +1,7 @@
 export const parse = (input: string[][]): string => {
     let csvContent: string = '';
     let dataString: string = '';
-    input.forEach((infoArray, index: number) => {
+    input.forEach((infoArray: any, index: number) => {
         dataString = infoArray.join(',');
         csvContent += index < input.length ? dataString + '\n' : dataString;
     });

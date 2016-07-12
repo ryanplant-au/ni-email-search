@@ -22,18 +22,6 @@ gulp.task('render pug', () => {
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('compile typescript', () => {
-    gulp.src('./src/typescript/work.ts')
-        .pipe(sourcemaps.init())
-        .pipe(typescript({
-            noImplicitAny: true,
-            target: 'es5'
-        }))
-        .pipe(uglify())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./dist/'));
-});
-
 gulp.task('compile stylesheets', () => {
     gulp.src('./src/sass/main.scss')
         .pipe(sass())
@@ -45,11 +33,16 @@ gulp.task('compile ts', () => {
     return browserify({
         basedir: '.',
         debug: true,
-        entries: ['src/typescript/work.ts'],
+        entries: ['src/typescript/work.tsx'],
         cache: {},
         packageCache: {}
     })
-    .plugin(tsify)
+    .plugin(tsify, {
+        noImplicitAny: true,
+        moduleResolution: 'node',
+        target: 'es5',
+        module: 'es2015'
+    })
     .bundle()
     .pipe(source('work.js'))
     .pipe(buffer())
