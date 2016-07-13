@@ -3,7 +3,7 @@
 ///<reference path="../../typings/globals/materialize-css/index.d.ts"/>
 
 import {parse, download} from './csv';
-import {getSessionKey} from './auth';
+import {getSessionKey, deauthenticate, authenticate} from './auth';
 import {User} from './User';
 import * as $ from 'jquery';
 window['$'] = $;
@@ -33,11 +33,9 @@ $(document).ready(function () {
     });
 
     $("#auth_button").on('click', () => {
-        let username = (<HTMLInputElement>document.getElementById('login')).value;
-        let password = (<HTMLInputElement>document.getElementById('password')).value;
-        getSessionKey(username, password).then(result => {
-            sessionKey = result;
-        });
+        authenticate().then(result => sessionKey = result);
+        const thirtyMinutes = 1800000; // thirty minutes in milliseconds
+        setTimeout(deauthenticate, thirtyMinutes);
     });
 
     $("#download_button").on('click', () => {
