@@ -12,6 +12,7 @@ Clone the repository, and run `npm install` then `gulp` from its root. Access th
 ## Notes and Potential Problems
 
 - You must authenticate before attempting to fetch information on users whose profiles are set to private.
+- To an unauthenticated user, the Lithium API does not differ private profiles from nonexistent ones.
 - After a successful call, user information is stored in your browser's local storage. When making new calls, local storage is checked before the remote API, preventing you from making additional unnecessary calls. This could lead to inaccurate results if, for example, two users swapped email addresses (which hopefully would never happen, but never say never), or if your community lets users change usernames.  
 A more likely issue is that you make an unauthenticated query and get back hidden profiles, making their information show up as hidden even on future authenticated queries. In this eventuality, clear your local storage.  
 
