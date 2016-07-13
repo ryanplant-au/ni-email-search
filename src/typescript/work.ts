@@ -23,7 +23,7 @@ $(document).ready(function () {
             current.fetch().then(() => {
                 userList.push(current.listRepresentation());
                 current.appendToTable();
-                if (current.email.includes('@')) {
+                if (current.username !== '----------') {
                     numberOfSuccesses += 1;
                 } else {
                     numberOfFailures += 1;
