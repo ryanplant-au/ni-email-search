@@ -19,7 +19,7 @@ export const getSessionKey = (login: string, password: string): Promise<string> 
     });
 };
 
-export const deauthenticate = () => {
+export const deauthenticate = (): void => {
     alert('Your session key has expired. Please re-authenticate.');
     $('#auth_button').css('background-color', 'red');
 };
