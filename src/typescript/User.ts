@@ -88,7 +88,7 @@ export class User {
     }
 
     listRepresentation() {
-        return [this.email, this.username, this.id];
+        return [this.email, this.username, this.id, this.firstName, this.lastName];
     }
 
     htmlRow() {
