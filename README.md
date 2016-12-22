@@ -1,4 +1,4 @@
-# NI Email Search
+# Lithium Email Search
 
 ## What is it? 
 A simple web-based interface to the Lithium user search API. Given a list of email addresses, this tool will fetch you profile information from your Lithium community, which can be displayed as a table or saved as a CSV file (using client-side file generation -- no server/Node needed).
